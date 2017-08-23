@@ -9,6 +9,8 @@ class Hero < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png'], :message => "L'avatar doit être un png ou un jpeg"
   validates_attachment_file_name :avatar, :matches => [/png\Z/i, /jpe?g\Z/i], :message => "L'avatar doit être un png ou un jpeg"
 
+  validates_with HeroValidator
+
   def to_param
     "#{id}-#{name.parameterize}"
   end
