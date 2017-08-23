@@ -1,0 +1,20 @@
+!!!
+%html
+
+%head
+  %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1.0", :name => "viewport"}/
+
+  %title Captain Clash
+
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+
+%body
+  %nav.light-blue.lighten-1
+    .nav-wrapper.container
+      = link_to "Captain Clash", root_path, id: 'logo-container', class: 'brand-logo'
+      %ul.right.hide-on-med-and-down
+        %li
+          = link_to 'Menu', '#'
+  = yield
