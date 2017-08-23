@@ -1,0 +1,24 @@
+%h1.header.center.orange-text Création d'un héro
+
+.row.center
+  .col.s12
+    = simple_form_for @hero do |f|
+      .col.offset-s3.s3
+        = f.input :name, wrapper_html: {class: "input-field"}
+        = f.input :health, as: :integer, input_html: {min: 0}, wrapper_html: {class: "input-field"}
+        = f.input :attack, as: :integer, input_html: {min: 0}, wrapper_html: {class: "input-field"}
+      .col.s3
+        = f.input :speed, as: :integer, input_html: {min: 0}, wrapper_html: {class: "input-field"}
+        = f.input :dodge_rate, as: :integer, input_html: {min: 0, max: 100}, wrapper_html: {class: "input-field"}
+        = f.input :critical_rate, as: :integer, input_html: {min: 0, max: 100}, wrapper_html: {class: "input-field"}
+
+      .col.offset-s3.s6
+        .file-field.input-field
+          .btn
+            %span Avatar
+            = f.input :avatar, as: :file, label: false
+          .file-path-wrapper
+            %input.file-path.validate{:type => "text"}
+
+        %br
+        = f.button :submit, "Créer", class: "waves-effect waves-light btn"

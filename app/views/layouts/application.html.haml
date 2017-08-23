@@ -16,5 +16,11 @@
       = link_to "Captain Clash", root_path, id: 'logo-container', class: 'brand-logo'
       %ul.right.hide-on-med-and-down
         %li
-          = link_to 'Menu', '#'
-  = yield
+          = link_to 'Créer un héro', new_hero_path
+  #index-banner.section.no-pad-bot
+    .container
+      = yield
+
+  - if alert.present?
+    :javascript
+      Materialize.toast("#{alert}", 4000);

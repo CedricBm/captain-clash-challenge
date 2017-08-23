@@ -28,6 +28,8 @@ gem 'haml', '~> 4.0.7'
 gem 'paperclip', '~> 4.3.1'
 # Environment variables
 gem 'figaro', '~> 1.1.1'
+# Simple implementation of forms
+gem 'simple_form', '~> 3.4.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -39,8 +41,7 @@ gem 'figaro', '~> 1.1.1'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'better_errors'
   gem 'hirb'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
