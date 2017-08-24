@@ -12,6 +12,9 @@ class Hero < ActiveRecord::Base
   validates_with HeroValidator
   before_save :compute_power_and_rank
 
+  has_many :wins, class_name: "Fight", foreign_key: "winner_id"
+  has_many :losses, class_name: "Fight", foreign_key: "loser_id"
+
   def to_param
     "#{id}-#{name.parameterize}"
   end

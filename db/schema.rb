@@ -11,7 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170824055317) do
+ActiveRecord::Schema.define(version: 20170824070326) do
+
+  create_table "fight_events", force: :cascade do |t|
+    t.integer  "fight_id"
+    t.string   "attacker_name"
+    t.integer  "attack_type"
+    t.integer  "attack_damage"
+    t.string   "defender_name"
+    t.integer  "defend_type"
+    t.integer  "defender_health"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "fight_events", ["fight_id"], name: "index_fight_events_on_fight_id"
+
+  create_table "fights", force: :cascade do |t|
+    t.integer  "winner_id"
+    t.integer  "loser_id"
+    t.text     "winner_attributes"
+    t.text     "loser_attributes"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "fights", ["loser_id"], name: "index_fights_on_loser_id"
+  add_index "fights", ["winner_id"], name: "index_fights_on_winner_id"
 
   create_table "heros", force: :cascade do |t|
     t.string   "name"
