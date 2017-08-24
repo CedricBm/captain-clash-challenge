@@ -22,7 +22,7 @@ class HeroValidator < ActiveModel::Validator
       hero.errors[:health] << "cannot be negative" if hero.health < 0
       hero.errors[:attack] << "cannot be negative" if hero.attack < 0
       hero.errors[:speed] << "cannot be negative" if hero.speed < 0
-      hero.errors[:dodge_rate] << "must be between 0 and 100" if hero.dodge_rate < 0 || hero.dodge_rate > 100
+      hero.errors[:dodge_rate] << "must be between 0 and 30" if hero.dodge_rate < 0 || hero.dodge_rate > 30
       hero.errors[:critical_rate] << "must be between 0 and 100" if hero.critical_rate < 0 || hero.critical_rate > 100
     end
 end

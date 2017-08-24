@@ -1,10 +1,13 @@
 %h1.header.center.orange-text Arène des combats
 
 .row.center
-  %h5.header.col.s12.light Seuls les plus intrépides oseront entrer dans l'Arène.
+  %h4.header.col.s12.light Seuls les plus intrépides oseront entrer dans l'Arène.
 
-- if @heroes.present?
+- if @heroes_by_rank.present?
   .row.center
-    %h6 Les 15 derniers héros
-    - @heroes.each do |hero|
-      %p= link_to hero.name, hero_path(hero)
+    %h5.col.s12 Les 100 derniers héros par rang
+    - @heroes_by_rank.each do |rank, heroes|
+      .col.s3
+        %h6= "Rang #{rank}"
+        - heroes.each do |hero|
+          %p= link_to hero.name, hero_path(hero)
