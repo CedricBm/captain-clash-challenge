@@ -18,8 +18,8 @@ class Hero < ActiveRecord::Base
 
   def compute_power_and_rank
     self.power = self.health + self.attack
-    self.power *= 1 + (self.dodge_rate / 100.0)
-    self.power *= 1 + (self.critical_rate / 100.0)
+    self.power += self.health * (self.dodge_rate / 100.0)
+    self.power += self.attack * (self.critical_rate / 100.0)
 
     self.rank = self.power.to_i.to_s.length
   end

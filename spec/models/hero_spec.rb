@@ -15,10 +15,10 @@ RSpec.describe Hero, type: :model do
   end
 
   it "creates hero with correct power and rank" do
-    my_hero = create(:hero, health: 40000, attack: 10000, dodge_rate: 20, critical_rate: 70)
+    my_hero = create(:hero, health: 7000, attack: 1500, dodge_rate: 20, critical_rate: 70)
 
-    expect(my_hero.power).to eq(102000)
-    expect(my_hero.rank).to eq(6)
+    expect(my_hero.power).to eq(10950)
+    expect(my_hero.rank).to eq(5)
   end
 
   it "cannot create hero with nil attributes" do
