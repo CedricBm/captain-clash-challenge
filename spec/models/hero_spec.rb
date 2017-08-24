@@ -33,8 +33,8 @@ RSpec.describe Hero, type: :model do
     expect{ create(:hero, attack: -1) }.to raise_error(ActiveRecord::RecordInvalid)
     expect{ create(:hero, speed: -1) }.to raise_error(ActiveRecord::RecordInvalid)
     expect{ create(:hero, dodge_rate: -1) }.to raise_error(ActiveRecord::RecordInvalid)
-    expect{ create(:hero, dodge_rate: 31) }.to raise_error(ActiveRecord::RecordInvalid)
+    expect{ create(:hero, dodge_rate: ENV['MAX_DODGE_RATE'].to_i + 1) }.to raise_error(ActiveRecord::RecordInvalid)
     expect{ create(:hero, critical_rate: -1) }.to raise_error(ActiveRecord::RecordInvalid)
-    expect{ create(:hero, critical_rate: 101) }.to raise_error(ActiveRecord::RecordInvalid)
+    expect{ create(:hero, critical_rate: ENV['MAX_CRITICAL_RATE'].to_i + 1) }.to raise_error(ActiveRecord::RecordInvalid)
   end
 end

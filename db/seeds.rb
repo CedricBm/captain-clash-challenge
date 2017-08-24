@@ -5,6 +5,6 @@
                health: 100 + Random.rand(49999),
                attack: 100 + Random.rand(999),
                speed: Random.rand(10),
-               dodge_rate: Random.rand(30),
-               critical_rate: Random.rand(100)
+               dodge_rate: Random.rand(ENV['MAX_DODGE_RATE'].to_i),
+               critical_rate: Random.rand(ENV['MAX_CRITICAL_RATE'].to_i)
 end

@@ -5,7 +5,7 @@
 
 - if @heroes_by_rank.present?
   .row.center
-    %h5.col.s12 Les 100 derniers héros par rang
+    %h5.col.s12 Les #{@limit} derniers héros par rang
     - @heroes_by_rank.each do |rank, heroes|
       .col.s3
         %h6= "Rang #{rank}"
