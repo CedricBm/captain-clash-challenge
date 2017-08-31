@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170824070326) do
+ActiveRecord::Schema.define(version: 20170831065335) do
 
   create_table "fight_events", force: :cascade do |t|
     t.integer  "fight_id"
@@ -26,6 +26,20 @@ ActiveRecord::Schema.define(version: 20170824070326) do
   end
 
   add_index "fight_events", ["fight_id"], name: "index_fight_events_on_fight_id"
+
+  create_table "fighters", force: :cascade do |t|
+    t.integer  "hero_id"
+    t.integer  "weapon_id"
+    t.integer  "shield_id"
+    t.integer  "fight_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "fighters", ["fight_id"], name: "index_fighters_on_fight_id"
+  add_index "fighters", ["hero_id"], name: "index_fighters_on_hero_id"
+  add_index "fighters", ["shield_id"], name: "index_fighters_on_shield_id"
+  add_index "fighters", ["weapon_id"], name: "index_fighters_on_weapon_id"
 
   create_table "fights", force: :cascade do |t|
     t.integer  "winner_id"
@@ -54,6 +68,21 @@ ActiveRecord::Schema.define(version: 20170824070326) do
     t.datetime "updated_at",                      null: false
     t.integer  "power"
     t.integer  "rank"
+  end
+
+  create_table "shields", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "armor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "weapons", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "min_damage"
+    t.integer  "max_damage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
