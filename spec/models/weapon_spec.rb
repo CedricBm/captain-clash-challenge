@@ -13,6 +13,12 @@ RSpec.describe Weapon, type: :model do
     expect(weapon.mean_damage).to eq(5)
   end
 
+  it "has bonus attack provided" do
+    weapon = create(:weapon)
+
+    expect(weapon.bonus_attack_provided).to be_between(1, 10)
+  end
+
   it "can't have negative damage" do
     expect{ Weapon.create! name: "wrong", min_damage: -10, max_damage: 1 }
       .to raise_error(ActiveRecord::RecordInvalid)

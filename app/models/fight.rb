@@ -30,6 +30,7 @@ class Fight < ActiveRecord::Base
 
   private
 
+    #data_clump ?
     def detect_order_of_attacks(fighter_one, fighter_two)
       if fighter_one.speed >= fighter_two.speed
         [fighter_one, fighter_two]
@@ -38,6 +39,7 @@ class Fight < ActiveRecord::Base
       end
     end
 
+    #data_clump ?
     def detect_winner_and_loser(first_fighter, second_fighter)
       if first_fighter.health > 0
         [first_fighter, second_fighter]

@@ -8,11 +8,19 @@ class Weapon < ActiveRecord::Base
     (max_damage + min_damage) / 2
   end
 
+  def bonus_attack_provided
+    min_damage + Random.rand(difference_min_max + 1)
+  end
+
   private
 
     def max_damage_superior_to_min_damage
       if max_damage < min_damage
         errors.add(:max_damage, "can't be inferior to min_damage: #{min_damage}")
       end
+    end
+
+    def difference_min_max
+      max_damage - min_damage
     end
 end

@@ -24,19 +24,23 @@ class Fighter < ActiveRecord::Base
                       defender_health: health)
   end
 
+  # I could extract the return of this function into an object #data_clump
   def determine_damage
     if Random.rand(100) < critical_rate
-      [attack * 2, FightEvent.attack_types['critical']]
+      [fighter_attack * 2, FightEvent.attack_types['critical']]
     else
-      [attack, FightEvent.attack_types['normal']]
+      [fighter_attack, FightEvent.attack_types['normal']]
     end
   end
 
+  #data_clump
   def determine_defense(damage)
+    damage = difference_or_zero_if_negative(damage, fighter_defense)
+
     if Random.rand(100) < dodge_rate
       [health, FightEvent.defend_types['dodge']]
     else
-      self.hero.health = damage < health ? health - damage : 0
+      self.hero.health = difference_or_zero_if_negative(health, damage)
       [health, FightEvent.defend_types['receive']]
     end
   end
@@ -45,5 +49,17 @@ class Fighter < ActiveRecord::Base
 
     def hash_hero_attributes
       self.hero_attributes = self.hero.to_hash
+    end
+
+    def difference_or_zero_if_negative(amount, substract)
+      amount > substract ? amount - substract : 0
+    end
+
+    def fighter_attack
+      attack + (self.weapon&.bonus_attack_provided).to_i
+    end
+
+    def fighter_defense
+      (self.shield&.armor).to_i
     end
 end
