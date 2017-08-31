@@ -1,8 +1,9 @@
 class Hero < ActiveRecord::Base
   validates_with HeroValidator
 
-  has_many :wins, class_name: "Fight", foreign_key: "winner_id"
-  has_many :losses, class_name: "Fight", foreign_key: "loser_id"
+  has_many :fighters
+  has_many :wins, through: :fighters
+  has_many :losses, through: :fighters
 
   has_attached_file :avatar,
                     :styles => {:profile => "128x128#"},
@@ -34,35 +35,6 @@ class Hero < ActiveRecord::Base
 
   def self.get_rank(rank)
     Hero.where(rank: rank).order(power: :desc)
-  end
-
-  def attack_against(enemy_hero)
-    damage, attack_type = determine_damage
-    health, defend_type = enemy_hero.determine_defense(damage)
-
-    FightEvent.create(attacker_name: self.name,
-                      attack_type: attack_type,
-                      attack_damage: damage,
-                      defender_name: enemy_hero.name,
-                      defend_type: defend_type,
-                      defender_health: health)
-  end
-
-  def determine_damage
-    if Random.rand(100) < self.critical_rate
-      [self.attack * 2, FightEvent.attack_types['critical']]
-    else
-      [self.attack, FightEvent.attack_types['normal']]
-    end
-  end
-
-  def determine_defense(damage)
-    if Random.rand(100) < self.dodge_rate
-      [self.health, FightEvent.defend_types['dodge']]
-    else
-      self.health = damage < self.health ? self.health - damage : 0
-      [self.health, FightEvent.defend_types['receive']]
-    end
   end
 
 end

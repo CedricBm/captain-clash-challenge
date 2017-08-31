@@ -5,14 +5,14 @@ class FightsController < ApplicationController
   end
 
   def create
-    hero_one = Hero.find(params[:hero_one])
-    hero_two = Hero.find(params[:hero_two])
-
-    if hero_one == hero_two
+    if params[:hero_one] == params[:hero_two]
       flash[:alert] = "Impossible de faire combattre un héro avec lui-même..."
       redirect_to new_fight_path(hero_one.rank)
     else
-      @fight = Fight.fight_between(hero_one, hero_two)
+      fighter_one = Fighter.create(hero_id: params[:hero_one])
+      fighter_two = Fighter.create(hero_id: params[:hero_two])
+
+      @fight = Fight.fight_between(fighter_one, fighter_two)
       redirect_to fight_path(@fight)
     end
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170831065335) do
+ActiveRecord::Schema.define(version: 20170831080614) do
 
   create_table "fight_events", force: :cascade do |t|
     t.integer  "fight_id"
@@ -31,12 +31,11 @@ ActiveRecord::Schema.define(version: 20170831065335) do
     t.integer  "hero_id"
     t.integer  "weapon_id"
     t.integer  "shield_id"
-    t.integer  "fight_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.text     "hero_attributes"
   end
 
-  add_index "fighters", ["fight_id"], name: "index_fighters_on_fight_id"
   add_index "fighters", ["hero_id"], name: "index_fighters_on_hero_id"
   add_index "fighters", ["shield_id"], name: "index_fighters_on_shield_id"
   add_index "fighters", ["weapon_id"], name: "index_fighters_on_weapon_id"
@@ -44,10 +43,8 @@ ActiveRecord::Schema.define(version: 20170831065335) do
   create_table "fights", force: :cascade do |t|
     t.integer  "winner_id"
     t.integer  "loser_id"
-    t.text     "winner_attributes"
-    t.text     "loser_attributes"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "fights", ["loser_id"], name: "index_fights_on_loser_id"

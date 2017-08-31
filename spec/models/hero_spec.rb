@@ -38,10 +38,12 @@ RSpec.describe Hero, type: :model do
     expect{ create(:hero, critical_rate: ENV['MAX_CRITICAL_RATE'].to_i + 1) }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
-  it "has some wins and losses" do
+  it "has fighters, wins and losses" do
     my_hero = build(:hero)
 
+    expect(my_hero.respond_to? :fighters).to be(true)
     expect(my_hero.respond_to? :wins).to be(true)
     expect(my_hero.respond_to? :losses).to be(true)
   end
+
 end
