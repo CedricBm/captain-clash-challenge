@@ -12,6 +12,10 @@ class Weapon < ActiveRecord::Base
     min_damage + Random.rand(difference_min_max + 1)
   end
 
+  def to_str
+    "#{name} : #{min_damage} – #{max_damage}"
+  end
+
   private
 
     def max_damage_superior_to_min_damage

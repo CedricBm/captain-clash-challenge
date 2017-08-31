@@ -5,10 +5,14 @@
     = form_tag fights_path do
       .col.offset-s3.s3
         %h5 Premier héro
-        = select_tag "hero_one", options_from_collection_for_select(@heroes, "id", "name")
+        = select_tag "one[hero_id]", options_from_collection_for_select(@heroes, "id", "name")
+        = select_tag "one[weapon_id]", options_from_collection_for_select(@weapons, "id", "name"), prompt: 'Weapon'
+        = select_tag "one[shield_id]", options_from_collection_for_select(@shields, "id", "name"), prompt: 'Shield'
       .col.s3
         %h5 Deuxième héro
-        = select_tag "hero_two", options_from_collection_for_select(@heroes, "id", "name")
+        = select_tag "two[hero_id]", options_from_collection_for_select(@heroes, "id", "name")
+        = select_tag "two[weapon_id]", options_from_collection_for_select(@weapons, "id", "name"), prompt: 'Weapon'
+        = select_tag "two[shield_id]", options_from_collection_for_select(@shields, "id", "name"), prompt: 'Shield'
 
       .col.s12
         %br

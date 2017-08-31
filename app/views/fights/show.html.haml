@@ -3,6 +3,18 @@
 .row.center
   .col.s12
     %h5= "Combat entre #{@fight.winner.name} et #{@fight.loser.name}"
+
+    .col.s6
+      = render "heros/profile", hero: @fight.winner.hero
+      %br
+      = render "fights/equipment", hero_name: @fight.winner.name, weapon: @fight.winner.weapon, shield: @fight.winner.shield
+    .col.s6
+      = render "heros/profile", hero: @fight.loser.hero
+      %br
+      = render "fights/equipment", hero_name: @fight.loser.name, weapon: @fight.loser.weapon, shield: @fight.loser.shield
+
+    %h5 Détails du combat
+
     - @events.each do |event|
       %p= event.to_str
 

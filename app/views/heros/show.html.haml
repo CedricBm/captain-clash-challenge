@@ -1,18 +1,6 @@
 %h1.header.center.orange-text= @hero.name
 
-.row.center
-  = image_tag @hero.avatar.url(:profile)
-  .col.s12
-    .col.offset-s3.s3
-      %p= "Nom : #{@hero.name}"
-      %p= "Points de vie : #{@hero.health}"
-      %p= "Points d'attaque : #{@hero.attack}"
-      %p= "Puissance : #{@hero.power}"
-    .col.s3
-      %p= "Vitesse : #{@hero.speed}"
-      %p= "Chance d'évasion : #{@hero.dodge_rate}%"
-      %p= "Chance de critique : #{@hero.critical_rate}%"
-      %p= "Rang : #{@hero.rank}"
+.row.center= render "heros/profile", hero: @hero
 
 .row.center
   .col.s6
