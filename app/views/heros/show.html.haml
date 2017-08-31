@@ -13,3 +13,14 @@
       %p= "Chance d'évasion : #{@hero.dodge_rate}%"
       %p= "Chance de critique : #{@hero.critical_rate}%"
       %p= "Rang : #{@hero.rank}"
+
+.row.center
+  .col.s6
+    %h5 Les victoires de ce héro
+    - @hero.wins.each do |win|
+      %p= link_to "Contre #{win.loser.name}", fight_path(win)
+
+  .col.s6
+    %h5 Les défaites de ce héro
+    - @hero.losses.each do |loss|
+      %p= link_to "Contre #{loss.winner.name}", fight_path(loss)

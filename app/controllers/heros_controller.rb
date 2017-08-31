@@ -15,7 +15,7 @@ class HerosController < ApplicationController
   end
 
   def show
-    @hero = Hero.find(params[:id])
+    @hero = Hero.includes(wins: :loser, losses: :winner).find(params[:id])
   end
 
   private
