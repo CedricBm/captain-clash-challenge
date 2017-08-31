@@ -1,0 +1,15 @@
+%h1.header.center.orange-text Combat de rang #{@rank} !
+
+.row.center
+  .col.s12
+    = form_tag fights_path do
+      .col.offset-s3.s3
+        %h5 Premier héro
+        = select_tag "hero_one", options_from_collection_for_select(@heroes, "id", "name")
+      .col.s3
+        %h5 Deuxième héro
+        = select_tag "hero_two", options_from_collection_for_select(@heroes, "id", "name")
+
+      .col.s12
+        %br
+        = submit_tag "Combat !", class: "waves-effect waves-light btn"

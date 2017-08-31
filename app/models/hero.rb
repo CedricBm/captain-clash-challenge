@@ -32,6 +32,10 @@ class Hero < ActiveRecord::Base
     self.rank = self.power.to_i.to_s.length
   end
 
+  def self.get_rank(rank)
+    Hero.where(rank: rank).order(power: :desc)
+  end
+
   def attack_against(enemy_hero)
     damage, attack_type = determine_damage
     health, defend_type = enemy_hero.determine_defense(damage)

@@ -1,0 +1,10 @@
+%h1.header.center.orange-text Récapitulatif du combat #{@fight.id}
+
+.row.center
+  .col.s12
+    %h5= "Combat entre #{@fight.winner.name} et #{@fight.loser.name}"
+    - @events.each do |event|
+      %p= event.to_str
+
+    %br
+    %h5 Le gagnant est #{@fight.winner.name} !!

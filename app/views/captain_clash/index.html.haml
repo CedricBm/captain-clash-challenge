@@ -4,6 +4,13 @@
   %h4.header.col.s12.light Seuls les plus intrépides oseront entrer dans l'Arène.
 
 - if @heroes_by_rank.present?
+
+  .row.center
+    %h5.col.s12 Faire un combat :
+    - @heroes_by_rank.keys.each do |rank|
+      .col.s2
+        = link_to "Rang #{rank}", new_fight_path(rank)
+
   .row.center
     %h5.col.s12 Les #{@limit} derniers héros par rang
     - @heroes_by_rank.each do |rank, heroes|
